@@ -17,11 +17,10 @@ class MemberServiceIntegrationTest {
     @Autowired MemberRepository memberRepository;
 
     @Test
-    @Commit
     void 회원가입() { // 테스트 코드는 걍 한글로 써도 되긴함
         //given (어떤 상황(데이터)이 주어짐)
         Member member = new Member();
-        member.setName("Spring");
+        member.setName("spring5");
 
         //when (이걸 실행(기능) 됐을 때)
         Long saveId = memberService.join(member);
