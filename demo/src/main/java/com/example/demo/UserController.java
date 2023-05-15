@@ -1,22 +1,27 @@
 package com.example.demo;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 public class UserController {
-    private final userRepository userRepository;
+    private final UserService userService;
 
-    @Autowired
-    public UserController(com.example.demo.userRepository userRepository) {
-        this.userRepository = userRepository;
+    public UserController(UserService userService) {
+        this.userService = userService;
     }
 
     @PostMapping("/user")
     public void find(@RequestBody UserSaveReuqest reuqest) {
-        userRepository.save(reuqest.name);
+        userService.saveMember(reuqest.name);
     }
+
+    @GetMapping("")
+    public List<Member> find(Member member){
+        return userService.finder();
+    }
+
 
     static class UserSaveReuqest{
         private String name;
